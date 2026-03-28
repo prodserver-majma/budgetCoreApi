@@ -212,7 +212,7 @@ namespace mahadalzahrawebapi.Services
             var httpRequest = (HttpWebRequest)WebRequest.Create(msgUrl);
             httpRequest.Method = "POST";
 
-            httpRequest.Headers["Authorization"] = authKey;
+            httpRequest.Headers["Authorization"] = "";
             httpRequest.ContentType = "application/json";
 
             DateTime t = DateTime.Now;
@@ -296,7 +296,7 @@ namespace mahadalzahrawebapi.Services
             var httpRequest = (HttpWebRequest)WebRequest.Create(msgUrl);
             httpRequest.Method = "POST";
 
-            httpRequest.Headers["Authorization"] = authKey;
+            httpRequest.Headers["Authorization"] = "";
             httpRequest.ContentType = "application/json";
 
             DateTime t = DateTime.Now;
