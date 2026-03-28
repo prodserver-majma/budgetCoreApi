@@ -51,7 +51,7 @@ jobs:
     - name: Extract App
       run: |
         Expand-Archive -Path "C:\Projects\Budget Module Settings\dot Net\app.zip" -DestinationPath "C:\Projects\finance_website1" -Force
-        shell: powershell
+      shell: powershell
 
     - name: Start App Pool
       shell: cmd
