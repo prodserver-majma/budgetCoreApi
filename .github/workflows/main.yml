@@ -36,9 +36,16 @@ jobs:
         Move-Item -Path "app.zip" -Destination "C:\Projects\Budget Module Settings\dot Net\app.zip"
       shell: powershell  
 
-    - name: Stop IIS, Extract and Restart
+    - name: IIS Running
+      shell: cmd
       run: |
-        iisreset /stop
+        net start WAS
+        net start W3SVC
+
+    - name: Stop App Pool, Extract and Start App Pool
+      shell: cmd
+      run: |
+        C:\Windows\System32\inetsrv\appcmd stop apppool /apppool.name:"imsb"        
         Expand-Archive -Path "C:\Projects\Budget Module Settings\dot Net\app.zip" -DestinationPath "C:\Projects\finance_website" -Force
-        iisreset /start
-      shell: powershell
+        C:\Windows\System32\inetsrv\appcmd start apppool /apppool.name:"imsb"
+        
