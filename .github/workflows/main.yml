@@ -41,10 +41,20 @@ jobs:
         sc query WAS | find "RUNNING" >nul || net start WAS
         sc query W3SVC | find "RUNNING" >nul || net start W3SVC
 
-    - name: Stop App Pool, Extract and Start App Pool
+    - name: Stop App Pool
       shell: cmd
       run: |
-        C:\Windows\System32\inetsrv\appcmd stop apppool /apppool.name:"imsb"        
+        C:\Windows\System32\inetsrv\appcmd stop apppool /apppool.name:"imsb"
         Expand-Archive -Path "C:\Projects\Budget Module Settings\dot Net\app.zip" -DestinationPath "C:\Projects\finance_website1" -Force
         C:\Windows\System32\inetsrv\appcmd start apppool /apppool.name:"imsb"
+
+    - name: Extract App
+      run: |
+        Expand-Archive -Path "C:\Projects\Budget Module Settings\dot Net\app.zip" -DestinationPath "C:\Projects\finance_website1" -Force
+        shell: powershell
+
+    - name: Start App Pool
+      shell: cmd
+      run: |
+        C:\Windows\System32\inetsrv\appcmd start apppool /apppool.name:"imsb"  
         
