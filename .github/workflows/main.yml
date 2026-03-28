@@ -1,7 +1,7 @@
 name: Deploy .NET App to Windows Server 
 on:
   push:
-    branches: [ master ]  # or your deployment branch
+    branches: [ main ]  # or your deployment branch
 
 jobs:
   deploy:
