@@ -1,0 +1,628 @@
+﻿@model mahadalzahrawebapi.Templates.KgprofileList
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Profile</title>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <style>
+        body {
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            /* background-color: #f4f4f4; */
+            font-size: 10pt;
+            box-sizing: border-box;
+        }
+
+        .header,
+        .footer {
+            margin-left: -3px;
+            display: -webkit-box;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            -webkit-box-pack: justify;
+            padding: 6px;
+            /* background-color: #f1f1f1; */
+            color: black;
+        }
+
+        .header-text {
+            text-align: center;
+        }
+
+        .profile-body {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 5px;
+        }
+
+        .section {
+            margin-top: 30px;
+            /* page-break-inside: avoid; */
+        }
+
+            .section h4 {
+                border-bottom: 2px solid #005792;
+                color: #005792;
+                padding-bottom: 5px;
+            }
+
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            /* Ensures that floated elements are contained */
+        }
+
+            .details-list li {
+                float: left;
+                /* Floats the list items */
+                width: 30%;
+                /* Adjust the width as needed */
+                margin-right: 20px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                /* Ensures padding and borders are included in�the�width�*/
+            }
+
+                .details-list li strong {
+                    font-weight: bold;
+                }
+
+        table {
+            width: 100%;
+            margin-top: 10px;
+            display: table;
+            background-color: transparent;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table-bordered {
+            border-collapse: collapse
+        }
+
+            .table-bordered th,
+            .table-bordered td {
+                border: 1px solid #ccc;
+            }
+
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+            .table-responsive > table {
+                margin-bottom: 0;
+                width: 100%;
+                max-width: 100%;
+                background-color: transparent;
+                table-layout: auto;
+            }
+
+                .table-responsive > table th,
+                .table-responsive > table td {
+                    white-space: normal;
+                    word-wrap: break-word;
+                    padding: 0.75rem;
+                    vertical-align: top;
+                    border-top: 1px solid #dee2e6;
+                }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .employee-profiles .profile-page {
+            break-after: page;
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+            .employee-profiles .profile-page:last-child {
+                break-after: auto;
+                page-break-after: auto;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="employee-profiles mt-5" id="employee-profiles">
+        @foreach(var modelObj in Model.kgprofileModels)
+        {
+            <div class="profile-page">
+            <div class="header">
+                    <img src="@modelObj.kgprofileimgBase64" alt="Employee Image" height="85" width="85">
+                <div class="header-text">
+                    <h3>Mahad al-Zahra</h3>
+                    <h4>Khidmatguzaar Profile</h4>
+                        <h3><u>@modelObj.Name<br />(@modelObj.Id)</u></h3>
+                </div>
+                    <img src="@modelObj.qismLogoBase64" alt="Company Logo" height="85" width="85">
+            </div>
+
+            <div class="profile-body">
+                <!-- Basic Details Section -->
+                @if (Model.suppressDetails.basic)
+                {
+
+                    <div class="section">
+                        <h4>Basic Details</h4>
+                        <ul class="details-list">
+                                <li><strong>Qism al-Tahfeez:</strong> @modelObj.QismAlTahfeez</li>
+                                <li><strong>Current Mauze:</strong> @modelObj.CurrentMauze</li>
+                                <li><strong>Idara:</strong> @modelObj.Idara</li>
+                                <li><strong>MZ Category:</strong> @modelObj.MZCategory</li>
+                                <li><strong>Age:</strong> @modelObj.Age</li>
+                                <li><strong>Marital Status:</strong> @modelObj.MaritalStatus</li>
+                                <li><strong>Dawat Title:</strong> @modelObj.DawatTitle</li>
+                                <li><strong>Nationality:</strong> @modelObj.Nationality</li>
+                                <li><strong>Jamaat:</strong> @modelObj.Jamaat</li>
+                                <li><strong>Jamiat:</strong> @modelObj.Jamiat</li>
+                                <li><strong>Watan:</strong> @modelObj.Watan</li>
+                                <li><strong>Domicile (Parents):</strong> @modelObj.DomicileParents</li>
+                        </ul>
+                    </div>
+                }
+
+                <!-- Contact Details Section -->
+                @if (Model.suppressDetails.contact)
+                {
+
+                    <div class="section">
+                        <h4>Contact Details</h4>
+                        <ul class="details-list">
+                                <li><strong>Mobile No:</strong> @modelObj.MobileNo</li>
+                                <li><strong>WhatsApp No:</strong> @modelObj.WhatsAppNo</li>
+                                <li><strong>Primary Email:</strong> @modelObj.PrimaryEmail</li>
+                        </ul>
+                    </div>
+                }
+
+                <!-- Academic Details Section -->
+                @if (Model.suppressDetails.academic)
+                {
+
+                    <div class="section">
+                        <h4>Academic Details</h4>
+                        <ul class="details-list">
+                                <li><strong>Category:</strong> @modelObj.Category</li>
+                                <li><strong>Farig Darajah:</strong> @modelObj.FarigDarajah</li>
+                                <li><strong>Farig Year:</strong> @modelObj.FarigYear</li>
+                                <li><strong>Aljamea Degree:</strong> @modelObj.AljameaDegree</li>
+                                <li><strong>Hifz Status:</strong> @modelObj.HifzStatus</li>
+                                <li><strong>Training Darajah:</strong> @modelObj.TrainingDarajah</li>
+                                <li><strong>Batch ID:</strong> @modelObj.BatchId</li>
+                                <li><strong>Latest Qualification:</strong> @modelObj.LatestQualification</li>
+                        </ul>
+                    </div>
+                }
+
+                <!-- Khidmat Details Section -->
+                @if (Model.suppressDetails.khidmat)
+                {
+                    <div class="section">
+                        <h4>Khidmat Details</h4>
+                        <ul class="details-list">
+                                <li><strong>Khidmat Year:</strong> @modelObj.KhidmatYear</li>
+                                <li><strong>Khidmat in MZ:</strong> @modelObj.KhidmatInMZ</li>
+                                <li><strong>Tayeen in MZ:</strong> @modelObj.TayeenInMZ</li>
+                                <li><strong>Tayeen Duration:</strong> @modelObj.TayeenDuration</li>
+                                <li><strong>Khidmat Duration:</strong> @modelObj.KhidmatDuration</li>
+                        </ul>
+                    </div>
+                }
+
+                <!-- House Details Section -->
+                @if (Model.suppressDetails.house)
+                {
+                    <div class="section">
+                        <h4>House Details</h4>
+                        <ul class="details-list">
+                                <li><strong>House Status (Khidmat Mauze):</strong> @modelObj.HouseStatus</li>
+                                <li><strong>House Type (Khidmat Mauze):</strong> @modelObj.HouseType</li>
+                                <li><strong>House Address (Khidmat Mauze):</strong> @modelObj.HouseAddress</li>
+                        </ul>
+                    </div>
+                }
+
+                <!-- Family Details Section -->
+                @if (Model.suppressDetails.family)
+                {
+                    <div class="section">
+                        <h4>Family Details</h4>
+                        <div class="table table-responsive">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Relation</th>
+                                        <th>Name</th>
+                                        <th>ID</th>
+                                        <th>Age</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        @foreach (var member in modelObj.FamilyMembers)
+                                    {
+                                        <tr>
+                                            <td>@member.Relation</td>
+                                            <td>@member.Name</td>
+                                            <td>@member.Id</td>
+                                            <td>@member.Age</td>
+                                            <td>@member.Location</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Qualification Section -->
+                @if (Model.suppressDetails.qualification)
+                {
+
+                    <div class="section">
+                        <h4>Qualification</h4>
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Standard/Degree</th>
+                                        <th>Status</th>
+                                        <th>P/D Year</th>
+                                        <th>Institution</th>
+                                        <th>Country</th>
+                                        <th>Medium</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        @foreach (var qualification in modelObj.Qualifications)
+                                    {
+                                        <tr>
+                                            <td>@qualification.Year</td>
+                                            <td>@qualification.StandardDegree</td>
+                                            <td>@qualification.Status</td>
+                                            <td>@qualification.PDYear</td>
+                                            <td>@qualification.Institution</td>
+                                            <td>@qualification.Country</td>
+                                            <td>@qualification.Medium</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Courses & Workshops Section -->
+                @if (Model.suppressDetails.cw)
+                {
+
+                    <div class="section">
+                        <h4>Courses & Workshops</h4>
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Type</th>
+                                        <th>Mode</th>
+                                        <th>Category</th>
+                                        <th>Sub Category</th>
+                                        <th>Topic</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        @foreach (var course in modelObj.CoursesWorkshops)
+                                    {
+                                        <tr>
+                                            <td>@course.Year</td>
+                                            <td>@course.Type</td>
+                                            <td>@course.Mode</td>
+                                            <td>@course.Category</td>
+                                            <td>@course.SubCategory</td>
+                                            <td>@course.Topic</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Field of Interest Section -->
+                @if (Model.suppressDetails.foi)
+                {
+                    <div class="section">
+                        <h4>Field of Interest</h4>
+                            @foreach (var field in modelObj.FieldOfInterest)
+                        {
+                            <p><strong>@field.Field:</strong> @field.Interest</p>
+                        }
+                    </div>
+                }
+
+                <!-- About ME Section -->
+                @if (Model.suppressDetails.aboutyourself)
+                {
+
+                    <div class="section">
+                        <h4>About ME</h4>
+                            <p>@modelObj.AboutMe</p>
+                    </div>
+                }
+
+                <!-- Strengths & Weaknesses Section -->
+                @if (Model.suppressDetails.strengthsWeakness)
+                {
+
+                    <div class="section">
+                        <h4>Strengths & Weaknesses</h4>
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><u>My Strengths</u></td>
+                                            <td>@modelObj.Strengths</td>
+                                    </tr>
+                                    <tr>
+                                        <td><u>My Weakness</u></td>
+                                            <td>@modelObj.Weaknesses</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Aspirations Section -->
+                @if (Model.suppressDetails.aspiration)
+                {
+                    <div class="section">
+                        <h4>Aspirations</h4>
+                            <p><strong>Long Term Goals:</strong> @modelObj.LongTermGoals</p>
+                            <p><strong>Change in Myself:</strong> @modelObj.ChangeInMyself</p>
+                            <p><strong>Alternative Career Path:</strong> @modelObj.AlternateCareerPath</p>
+                            <p><strong>Role Model:</strong> @modelObj.RoleModel</p>
+                    </div>
+                }
+
+                <!-- Performance Section -->
+                @if (Model.suppressDetails.perfomance)
+                {
+
+                    <div class="section">
+                        <h4>Performance</h4>
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Commented By</th>
+                                        <th>KG Venue</th>
+                                        <th>Comments</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        @foreach (var performance in modelObj.Performances)
+                                    {
+                                        <tr>
+                                            <td>@performance.Year</td>
+                                            <td>@performance.CommentedBy</td>
+                                            <td>@performance.KGVenue</td>
+                                            <td>@performance.Remarks</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><b>Area of Improvement:</b></td>
+                                            <td>@performance.AreaOfImprovement</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><b>Marking:</b></td>
+                                            <td>@performance.Marking</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Past MZ Mawaze Section -->
+                @if (Model.suppressDetails.pastmm)
+                {
+
+                    <div class="section">
+                        <h4>Past MZ Mawaze</h4>
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                        @foreach (var mawaze in modelObj.PastMZMawaze)
+                                    {
+                                        <tr>
+                                            <td>@mawaze.Year</td>
+                                            <td>@mawaze.Location</td>
+                                            <td>@mawaze.khidmat</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Other Idara Mawaze Section -->
+                @if (Model.suppressDetails.otheridara)
+                {
+
+                    <div class="section">
+                        <h4>Other Idara Mawaze</h4>
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                        @foreach (var mawaze in modelObj.OtherIdaraMawaze)
+                                    {
+                                        <tr>
+                                            <td>@mawaze.Year</td>
+                                            <td>@mawaze.Location</td>
+                                            <td>@mawaze.khidmat</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Khidmat Mawaze Section -->
+                @if (Model.suppressDetails.khidmatm)
+                {
+                    <div class="section">
+                        <h4>Khidmat Mawaze</h4>
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Event</th>
+                                        <th>Khidmat Nature</th>
+                                        <th>Count</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        @foreach (var khidmat in modelObj.KhidmatMawaze)
+                                    {
+                                        <tr>
+                                            <td>@khidmat.Event</td>
+                                            <td>@khidmat.KhidmatNature</td>
+                                            <td>@khidmat.Count</td>
+                                            <td>@khidmat.Total</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                <!-- Salary Details Section -->
+                @if (Model.suppressDetails.salary)
+                {
+                    <div class="section">
+                        <h4>Salary Details</h4>
+                        <ul class="details-list">
+                                <li><strong>Gross Wazifa:</strong> @modelObj.salarydetails.grossSalary</li>
+                                @if (modelObj.salarydetails.rentAllowance > 0)
+                            {
+                                    <li><strong>Rent Allowance:</strong> @modelObj.salarydetails.rentAllowance</li>
+                            }
+                                @if (modelObj.salarydetails.mumbaiAllowance > 0)
+                            {
+                                    <li><strong>City Allowance:</strong> @modelObj.salarydetails.mumbaiAllowance</li>
+                            }
+                                @if (modelObj.salarydetails.arrears > 0)
+                            {
+                                    <li><strong>Arrears:</strong> @modelObj.salarydetails.arrears</li>
+                            }
+                                @if (modelObj.salarydetails.conveyanceAllowance > 0)
+                            {
+                                    <li><strong>Conveyance Allowance:</strong> @modelObj.salarydetails.conveyanceAllowance</li>
+                            }
+                                @if (modelObj.salarydetails.fmbAllowance > 0)
+                            {
+                                    <li><strong>Medical Allowance:</strong> @modelObj.salarydetails.fmbAllowance</li>
+                            }
+                            @if (modelObj.salarydetails.marriageAllowance > 0)
+                            {
+                                <li><strong>Marriage Allowance:</strong> @modelObj.salarydetails.marriageAllowance</li>
+                            }
+                            @if (modelObj.salarydetails.extraAllowance > 0)
+                            {
+                                <li><strong>Annual Bonus:</strong> @modelObj.salarydetails.extraAllowance</li>
+                            }
+                                <li><strong>Total Allowance:</strong> @modelObj.TotalAllowance</li>
+                            @if (modelObj.salarydetails.tds > 0)
+                            {
+                                <li><strong>TDS:</strong> @modelObj.salarydetails.tds</li>
+                            }
+                            @if (modelObj.salarydetails.sabeel > 0)
+                            {
+                                <li><strong>Sabeel:</strong> @modelObj.salarydetails.sabeel</li>
+                            }
+                            @if (modelObj.salarydetails.qardanHasanahNonRefundable > 0)
+                            {
+                                <li>
+                                    <strong>Qardan Hasanah Non-Refundable:</strong>
+                                    @modelObj.salarydetails.qardanHasanahNonRefundable
+                                </li>
+                            }
+                            @if (modelObj.salarydetails.qardanHasanahRefundable > 0)
+                            {
+                                <li>
+                                    <strong>Qardan Hasanah Refundable:</strong> @modelObj.salarydetails.qardanHasanahRefundable
+                                </li>
+                            }
+                            @if (modelObj.salarydetails.qardanHasanah > 0)
+                            {
+                                <li><strong>Qardan Hasanah Repayment:</strong> @modelObj.salarydetails.qardanHasanah</li>
+                            }
+                            @if (modelObj.salarydetails.fmbDeduction > 0)
+                            {
+                                <li><strong>FMB Deduction:</strong> @modelObj.salarydetails.fmbDeduction</li>
+                            }
+                            @if (modelObj.salarydetails.marafiqKhairiyah > 0)
+                            {
+                                <li><strong>Marafiq Khairiyah:</strong> @modelObj.salarydetails.marafiqKhairiyah</li>
+                            }
+                            @if (modelObj.salarydetails.professionTax > 0)
+                            {
+                                <li><strong>Professional Tax:</strong> @modelObj.salarydetails.professionTax</li>
+                            }
+                            @if (modelObj.salarydetails.incomeTax > 0)
+                            {
+                                <li><strong>Income Tax:</strong> @modelObj.salarydetails.incomeTax</li>
+                            }
+                            @if (modelObj.salarydetails.localTax > 0)
+                            {
+                                <li><strong>Local Tax:</strong> @modelObj.salarydetails.localTax</li>
+                            }
+                            @if (modelObj.salarydetails.withHoldings > 0)
+                            {
+                                <li><strong>With Holdings:</strong> @modelObj.salarydetails.withHoldings</li>
+                            }
+                                <li><strong>Total Deduction:</strong> @modelObj.TotalDeduction</li>
+                                <li><strong>Net Wazifa:</strong> @modelObj.NetSalary</li>
+                        </ul>
+                    </div>
+                }
+
+            </div>
+        </div>
+        }
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,688 @@
+﻿{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "mzdbContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "mahadalzahrawebapi",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 3,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "acedemicyear_data",
+         "ObjectType": 0
+      },
+      {
+         "Name": "azwaaj_minentry",
+         "ObjectType": 0
+      },
+      {
+         "Name": "branch_user",
+         "ObjectType": 0
+      },
+      {
+         "Name": "department",
+         "ObjectType": 0
+      },
+      {
+         "Name": "dept_venue",
+         "ObjectType": 0
+      },
+      {
+         "Name": "dept_venue_baseitem",
+         "ObjectType": 0
+      },
+      {
+         "Name": "dropdown_dataset_header",
+         "ObjectType": 0
+      },
+      {
+         "Name": "dropdown_dataset_options",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_academic_details",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_bank_details",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_dept_salary",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_e_attendence",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_family_details",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_khidmat_details",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_passport_details",
+         "ObjectType": 0
+      },
+      {
+         "Name": "employee_salary",
+         "ObjectType": 0
+      },
+      {
+         "Name": "export_category",
+         "ObjectType": 0
+      },
+      {
+         "Name": "export_type",
+         "ObjectType": 0
+      },
+      {
+         "Name": "export_type_displayheader",
+         "ObjectType": 0
+      },
+      {
+         "Name": "form",
+         "ObjectType": 0
+      },
+      {
+         "Name": "form_questionnaire",
+         "ObjectType": 0
+      },
+      {
+         "Name": "form_response",
+         "ObjectType": 0
+      },
+      {
+         "Name": "global_constant",
+         "ObjectType": 0
+      },
+      {
+         "Name": "hijri_calender",
+         "ObjectType": 0
+      },
+      {
+         "Name": "hijri_months",
+         "ObjectType": 0
+      },
+      {
+         "Name": "holiday_allocation",
+         "ObjectType": 0
+      },
+      {
+         "Name": "holiday_calender",
+         "ObjectType": 0
+      },
+      {
+         "Name": "holiday_hijri_miqaat",
+         "ObjectType": 0
+      },
+      {
+         "Name": "ikhtibaar",
+         "ObjectType": 0
+      },
+      {
+         "Name": "ikhtibaar_marksheet",
+         "ObjectType": 0
+      },
+      {
+         "Name": "ikhtibaar_questionnaire",
+         "ObjectType": 0
+      },
+      {
+         "Name": "kg_faimalydetails",
+         "ObjectType": 0
+      },
+      {
+         "Name": "kg_faimalydetails_its",
+         "ObjectType": 0
+      },
+      {
+         "Name": "kg_identitycards",
+         "ObjectType": 0
+      },
+      {
+         "Name": "kg_self_assessment",
+         "ObjectType": 0
+      },
+      {
+         "Name": "kg_venue_worktype",
+         "ObjectType": 0
+      },
+      {
+         "Name": "kg_worktype",
+         "ObjectType": 0
+      },
+      {
+         "Name": "khidmat_guzaar",
+         "ObjectType": 0
+      },
+      {
+         "Name": "masterdepartment",
+         "ObjectType": 0
+      },
+      {
+         "Name": "module",
+         "ObjectType": 0
+      },
+      {
+         "Name": "module_rights",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_bank_transaction",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_bill_item",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_bill_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_bill_master",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_bills_package",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_budget_araz",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_budget_araz_transfer_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_budget_issue_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_budget_smart_goals",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_budget_smart_issue_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_budget_transfer_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_deptvenue_cash_wallet",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_estimate_student",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_online_payment_users",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_procurement_baseitem",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_procurement_item",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_procurement_item_baseitem",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_sanctioned_budget",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_student_budget_issue_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_vendor_master",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_vendor_payment",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_vendor_transaction",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_expense_vendor_wallet",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_faculty_loginlogs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_fee_collection_center",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_kg_wajebaat_araz",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_loginlogs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_off_module_exception",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_on_off_modules",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_pset_elqgrpid_mapping",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_receipt_payment_mode_rights",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_receipt_payment_modes",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student_ewallet",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student_fee_allotment",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student_fee_excluding_list",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student_fee_transaction",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student_feecategory",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student_feecategory_pset",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mz_student_receipt",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mzlm_leave_application",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mzlm_leave_category",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mzlm_leave_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mzlm_leave_package",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mzlm_leave_package_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mzlm_leave_stage",
+         "ObjectType": 0
+      },
+      {
+         "Name": "mzlm_leave_type",
+         "ObjectType": 0
+      },
+      {
+         "Name": "nisaab_alumni",
+         "ObjectType": 0
+      },
+      {
+         "Name": "nisaab_classes",
+         "ObjectType": 0
+      },
+      {
+         "Name": "nisaab_classes_monitor",
+         "ObjectType": 0
+      },
+      {
+         "Name": "nisaab_jadwal",
+         "ObjectType": 0
+      },
+      {
+         "Name": "nisaab_periods",
+         "ObjectType": 0
+      },
+      {
+         "Name": "notification_email_template",
+         "ObjectType": 0
+      },
+      {
+         "Name": "password_reset_requests",
+         "ObjectType": 0
+      },
+      {
+         "Name": "payroll_salary_packages",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_button",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_menu_map",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_module",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_page",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_role",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_role_module",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_user_module",
+         "ObjectType": 0
+      },
+      {
+         "Name": "platform_user_role",
+         "ObjectType": 0
+      },
+      {
+         "Name": "printableformat_report",
+         "ObjectType": 0
+      },
+      {
+         "Name": "printableformat_report_rights",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_api_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_login_logs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_role",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_role_module",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_role_right",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_user",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_user_deptvenue",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qism_al_tahfeez_user_pset",
+         "ObjectType": 0
+      },
+      {
+         "Name": "qismal_tahfeez_student",
+         "ObjectType": 0
+      },
+      {
+         "Name": "registrationform_dropdown_set",
+         "ObjectType": 0
+      },
+      {
+         "Name": "registrationform_programs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "registrationform_subprograms",
+         "ObjectType": 0
+      },
+      {
+         "Name": "rights",
+         "ObjectType": 0
+      },
+      {
+         "Name": "role",
+         "ObjectType": 0
+      },
+      {
+         "Name": "role_module",
+         "ObjectType": 0
+      },
+      {
+         "Name": "role_rights",
+         "ObjectType": 0
+      },
+      {
+         "Name": "salary_allocation_gegorian",
+         "ObjectType": 0
+      },
+      {
+         "Name": "salary_allocation_hijri",
+         "ObjectType": 0
+      },
+      {
+         "Name": "salary_generation_gegorgian",
+         "ObjectType": 0
+      },
+      {
+         "Name": "salary_generation_hijri",
+         "ObjectType": 0
+      },
+      {
+         "Name": "salary_querylogs",
+         "ObjectType": 0
+      },
+      {
+         "Name": "salary_type",
+         "ObjectType": 0
+      },
+      {
+         "Name": "training_class",
+         "ObjectType": 0
+      },
+      {
+         "Name": "training_class_student",
+         "ObjectType": 0
+      },
+      {
+         "Name": "training_class_subject_teacher",
+         "ObjectType": 0
+      },
+      {
+         "Name": "training_student_subject_marksheet",
+         "ObjectType": 0
+      },
+      {
+         "Name": "training_subject",
+         "ObjectType": 0
+      },
+      {
+         "Name": "user",
+         "ObjectType": 0
+      },
+      {
+         "Name": "user_dept-venue_baseitem",
+         "ObjectType": 0
+      },
+      {
+         "Name": "user_deptvenue",
+         "ObjectType": 0
+      },
+      {
+         "Name": "userdeptassociation",
+         "ObjectType": 0
+      },
+      {
+         "Name": "useritemassociation",
+         "ObjectType": 0
+      },
+      {
+         "Name": "venue",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafd_fieldofinterest",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafd_languageproficiency",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafd_mahad_past_mawaze",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafd_otheridara_mawaze",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafd_physicalfitness",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_dropdown_authoredcategory",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_dropdown_category",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_dropdown_degree",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_dropdown_fieldofinterest",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_dropdown_mode",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_dropdown_titlecategory",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_dropdown_workshopcategory",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_english_assessment",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_maqaraat_data",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_maqaraat_session",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_maqaraat_teacher",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_qualification_new",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_qualification_stage_degree",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_workshop_data",
+         "ObjectType": 0
+      },
+      {
+         "Name": "wafdprofile_workshops_category_subcategory",
+         "ObjectType": 0
+      },
+      {
+         "Name": "yellowreceipt",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "mzmanagelocal",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": true
+}

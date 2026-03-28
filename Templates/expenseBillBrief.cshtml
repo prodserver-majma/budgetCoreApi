@@ -1,0 +1,109 @@
+@model mahadalzahrawebapi.Mappings.ExpenseBillBrief
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Details</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 210mm;
+      margin: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- <h2>Bill Details</h2> -->
+    <table>
+            <tr>
+                <th>Bill ID</th>
+                <td>@Model.billid</td>
+            </tr>
+            <tr>
+                <th>Vendor Name</th>
+                <td>@Model.nameOfVendor</td>
+            </tr>
+            <tr>
+                <th>Payment Mode</th>
+                <td>@Model.paymentMode</td>
+            </tr>
+            <tr>
+                <th>Entry Date</th>
+                <td>@Model.entryDate.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>@Model.billAmount</td>
+            </tr>
+            <tr>
+                <th>Dept./Venue</th>
+                <td>@Model.deptName, @Model.nameOfVenue</td>
+            </tr>
+            <tr>
+                <th>Expense Head</th>
+                <td>@Model.baseItemName</td>
+            </tr>
+    </table>
+
+    <!-- <h2>Vendor Bank Details</h2> -->
+    <table>
+      <tr>
+        <th colspan="2" style="text-align: center; padding: 0;">
+          <h3>Vendor Bank Details</h3>
+        </th>
+      </tr>
+      <tr>
+        <th>Acc Num</th>
+        <td>@Model.vendorAccountNo</td>
+      </tr>
+      <tr>
+        <th>Acc Name</th>
+        <td>@Model.vendorAccName</td>
+      </tr>
+      <tr>
+        <th>IFSC</th>
+        <td>@Model.vendorIfsc</td>
+      </tr>
+      <tr>
+        <th>Bank Name</th>
+        <td>@Model.vendorBankName</td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>

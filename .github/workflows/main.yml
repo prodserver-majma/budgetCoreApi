@@ -1,0 +1,44 @@
+name: Deploy .NET App to Windows Server 
+
+on:
+  push:
+    branches: [ master ]  # or your deployment branch
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'  # or your version
+
+    - name: Publish .NET app
+      run: |
+        dotnet publish -c Release
+
+    - name: Create ZIP file
+      run: Compress-Archive -Path ./bin/Release/net8.0/publish/* -DestinationPath ./app.zip -Force
+
+    - name: Remove old ZIP if exists
+      run: |
+        if (Test-Path "C:\Projects\Budget Module Settings\dot Net\app.zip") {
+        Remove-Item "C:\Projects\Budget Module Settings\dot Net\app.zip" -Force
+        }
+      shell: powershell
+
+    - name: Move ZIP locally
+      run: |
+        Move-Item -Path "app.zip" -Destination "C:\Projects\Budget Module Settings\dot Net\app.zip"
+      shell: powershell  
+
+    - name: Stop IIS, Extract and Restart
+      run: |
+        iisreset /stop
+        Expand-Archive -Path "C:\Projects\Budget Module Settings\dot Net\app.zip" -DestinationPath "C:\Projects\finance_website" -Force
+        iisreset /start
+      shell: powershell
