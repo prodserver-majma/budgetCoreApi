@@ -38,8 +38,8 @@ jobs:
     - name: IIS Running
       shell: cmd
       run: |
-        net start WAS
-        net start W3SVC
+        sc query WAS | find "RUNNING" >nul || net start WAS
+        sc query W3SVC | find "RUNNING" >nul || net start W3SVC
 
     - name: Stop App Pool, Extract and Start App Pool
       shell: cmd
