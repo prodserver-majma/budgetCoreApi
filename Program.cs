@@ -126,12 +126,12 @@ string connectionString;
 string planetscaleconnectionString;
 if (builder.Environment.IsDevelopment())
 {
-    connectionString = builder.Configuration.GetConnectionString("Default");
+    connectionString = builder.Configuration.GetConnectionString("Dev");
     planetscaleconnectionString = builder.Configuration.GetConnectionString("PlanetScale");
 }
 else
 {
-    connectionString = builder.Configuration.GetConnectionString("Default");
+    connectionString = builder.Configuration.GetConnectionString("Prod");
     planetscaleconnectionString = builder.Configuration.GetConnectionString("PlanetScale");
 }
 
