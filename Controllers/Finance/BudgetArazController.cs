@@ -1287,7 +1287,8 @@ namespace mahadalzahrawebapi.Controllers
                     int financialYear = Int32.Parse(
                         _context
                             .global_constant.Where(x => x.key == "budgetFinancialYear")
-                            .FirstOrDefault()
+                            .OrderByDescending(x => x.value)
+                            .FirstOrDefault()                            
                             .value
                     );
                     if (itsId == 500)
@@ -1310,7 +1311,7 @@ namespace mahadalzahrawebapi.Controllers
 
                     List<venue> venues = _context.venue.ToList();
 
-                    List<mz_expense_estimate_student> esm = _context.mz_expense_estimate_student.ToList();
+                    List<mz_expense_estimate_student> esm = _context.mz_expense_estimate_student.Where(x => x.financialYear == financialYear).ToList();
                     List<mz_expense_estimate_student_monthly> estimateMonthly = _context.mz_expense_estimate_student_monthly.ToList();
 
                     foreach (var pr in psetRights)
