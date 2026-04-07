@@ -44,9 +44,7 @@ jobs:
     - name: Stop App Pool
       shell: cmd
       run: |
-        C:\Windows\System32\inetsrv\appcmd stop apppool /apppool.name:"imsb"
-        Expand-Archive -Path "C:\Projects\Budget Module Settings\dot Net\app.zip" -DestinationPath "C:\Projects\finance_website1" -Force
-        C:\Windows\System32\inetsrv\appcmd start apppool /apppool.name:"imsb"
+        C:\Windows\System32\inetsrv\appcmd stop apppool /apppool.name:"finance_website"
 
     - name: Extract App
       run: |
@@ -56,5 +54,5 @@ jobs:
     - name: Start App Pool
       shell: cmd
       run: |
-        C:\Windows\System32\inetsrv\appcmd start apppool /apppool.name:"imsb"  
+        C:\Windows\System32\inetsrv\appcmd start apppool /apppool.name:"finance_website"  
         
