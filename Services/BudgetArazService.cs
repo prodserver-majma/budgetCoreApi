@@ -560,7 +560,7 @@ namespace mahadalzahrawebapi.Services
                 List<mz_expense_procurement_item> items = _context.mz_expense_procurement_item.ToList();
                 List<dept_venue> deptvenues = _context.dept_venue.ToList();
                 List<user_dept_venue_baseitem> userDeptVenueBaseitems = _context.user_dept_venue_baseitem.ToList();
-                List<mz_expense_budget_araz> budgetAraz = _context.mz_expense_budget_araz.Include(x => x.mz_expense_budget_issue_logs).ToList();
+                List<mz_expense_budget_araz> budgetAraz = _context.mz_expense_budget_araz.Where(x => x.financialYear == financialYear).Include(x => x.mz_expense_budget_issue_logs).ToList();
                 List<greg_months> gregMonths = _context.greg_months.ToList();
                 List<registrationform_dropdown_set> rd = _context.registrationform_dropdown_set.ToList();
                 List<registrationform_subprograms> rfs = _context.registrationform_subprograms.ToList();

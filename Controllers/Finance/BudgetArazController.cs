@@ -1484,6 +1484,7 @@ namespace mahadalzahrawebapi.Controllers
 
             global_constant fy = _context
                 .global_constant.Where(x => x.key == "budgetFinancialYear")
+                .OrderByDescending(x => x.value)
                 .FirstOrDefault();
             if (fy == null)
             {
