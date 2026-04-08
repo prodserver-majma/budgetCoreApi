@@ -1298,8 +1298,13 @@ namespace mahadalzahrawebapi.Controllers
                     List<student_registration_rights> psetRights = _context
                         .student_registration_rights.Where(x => x.itsId == itsId)
                         .ToList();
+                    var psetRightsIds = psetRights.Select(x => x.programSetId).ToList();
+                    //var psetRightsIds = 611;
 
-                    List<mz_student_feecategory_pset> fcps = _context.mz_student_feecategory_pset.ToList();
+
+                    //List<mz_student_feecategory_pset> fcps = _context.mz_student_feecategory_pset.Where(x => x.id == 6545).ToList();
+                    List<mz_student_feecategory_pset> fcps = _context.mz_student_feecategory_pset.Where(x => psetRightsIds.Contains(x.psetId)).ToList();
+
 
                     List<mz_student_feecategory> fcs = _context.mz_student_feecategory.ToList();
 
@@ -1312,11 +1317,13 @@ namespace mahadalzahrawebapi.Controllers
                     List<venue> venues = _context.venue.ToList();
 
                     List<mz_expense_estimate_student> esm = _context.mz_expense_estimate_student.Where(x => x.financialYear == financialYear).ToList();
-                    List<mz_expense_estimate_student_monthly> estimateMonthly = _context.mz_expense_estimate_student_monthly.ToList();
+
+                    var esmId = esm.Select(x => x.id).ToList();
+                    List<mz_expense_estimate_student_monthly> estimateMonthly = _context.mz_expense_estimate_student_monthly.Where(x => esmId.Contains(x.estimate_student_id)).ToList();
 
                     foreach (var pr in psetRights)
                     {
-                        List<mz_student_feecategory_pset> fc = fcps.Where(x => x.psetId == pr.programSetId).ToList();
+                        List<mz_student_feecategory_pset> fc = fcps.Where(x => x.financialYear == financialYear && x.psetId == pr.programSetId).ToList();
                         List<dropdown_dataset_options> programDD =
                             new List<dropdown_dataset_options>();
                         List<dropdown_dataset_options> categoryDD =
@@ -1354,8 +1361,7 @@ namespace mahadalzahrawebapi.Controllers
                                 v = new venue();
                             }
                             mz_expense_estimate_student es = esm.Where(x =>
-                                    x.psetId == i.psetId
-                                    && x.fcId == i.fcId
+                                    x.sfcp_id == i.id
                                     && x.financialYear == financialYear
                                 )
                                 .FirstOrDefault();
@@ -1436,11 +1442,11 @@ namespace mahadalzahrawebapi.Controllers
                                 }
                             }
 
-                            List<mz_expense_estimate_student_monthly> monthlyEstimate = estimateMonthly.Where(x => x.estimate_student_id == i.id).ToList();
+                            List<mz_expense_estimate_student_monthly> monthlyEstimate = estimateMonthly.Where(x => x.estimate_student_id == es.id).ToList();
 
                             foreach (var month in monthlyEstimate)
                             {
-                                if(month.estimate_student_id == i.id)
+                                if(month.estimate_student_id == es.id)
                                 {
                                     var greg_month = greg_months.Where(x => x.month_name == month.month).FirstOrDefault();
 
@@ -2443,7 +2449,7 @@ namespace mahadalzahrawebapi.Controllers
                     .mz_expense_estimate_student.Where(x => x.id == models.id)
                     .FirstOrDefault();
 
-                mz_student_feecategory_pset d = _context.mz_student_feecategory_pset.Where(x => x.fcId == es.fcId && x.psetId == es.psetId).FirstOrDefault();
+                mz_student_feecategory_pset d = _context.mz_student_feecategory_pset.Where(x => x.id == es.sfcp_id).FirstOrDefault();
 
                 if (d != null)
                 {
@@ -2473,6 +2479,7 @@ namespace mahadalzahrawebapi.Controllers
 
                 global_constant fy = _context
                     .global_constant.Where(x => x.key == "budgetFinancialYear")
+                    .OrderByDescending(x => x.value)
                     .FirstOrDefault() ?? new global_constant { key = "budgetFinancialYear", value = "2024" };
                 int financialYear = Int32.Parse(fy.value);
                 if (es == null)
@@ -2499,7 +2506,7 @@ namespace mahadalzahrawebapi.Controllers
                     es.feesAmount = models.total;
                 }
 
-                List<mz_expense_estimate_student_monthly>? estimateMonthly = _context.mz_expense_estimate_student_monthly.Where(x => x.estimate_student_id == d.id).ToList();
+                List<mz_expense_estimate_student_monthly>? estimateMonthly = _context.mz_expense_estimate_student_monthly.Where(x => x.estimate_student_id == models.id).ToList();
 
                 foreach (var esm in estimateMonthly)
                 {
@@ -2510,6 +2517,7 @@ namespace mahadalzahrawebapi.Controllers
                         {
                             esm.student_count = item1.student_count;
                             esm.fees_per_student = item1.fees_per_student;
+                            esm.modified_on = indianTime;
                         }
                     }
                 }
@@ -2524,10 +2532,11 @@ namespace mahadalzahrawebapi.Controllers
                         {
                             var greg_month = greg_months.Where(x => x.month_name == item2.month).FirstOrDefault();
 
-                            if (sfm.month == greg_month.slug)
+                            if (sfm.month == greg_month.month_name)
                             {
                                 sfm.student_count = item2.student_count;
                                 sfm.fees_per_student = item2.fees_per_student;
+                                sfm.modified_on = indianTime;
                             }
                         }
                     }

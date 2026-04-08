@@ -22,4 +22,7 @@ public partial class mz_student_feecategory_pset
     public string currency { get; set; }
     [Column(TypeName = "text")]
     public string frequency { get; set; }
+
+    [Column(TypeName = "int(11)")]
+    public int financialYear { get; set; }
 }

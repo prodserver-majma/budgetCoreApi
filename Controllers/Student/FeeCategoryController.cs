@@ -90,6 +90,7 @@ namespace mahadalzahrawebapi.Controllers
                 int financialYear = Int32.Parse(
                 _context
                     .global_constant.Where(x => x.key == "budgetFinancialYear")
+                    .OrderByDescending(x => x.value)
                     .FirstOrDefault()
                     .value
             );
@@ -104,7 +105,7 @@ namespace mahadalzahrawebapi.Controllers
                 }
                 else
                 { 
-                    var fp = new mz_student_feecategory_pset { psetId = model.income.psetId, amount = model.income.amount, currency = model.income.currency, fcId = model.income.categoryId, frequency = model.income.frequency };
+                    var fp = new mz_student_feecategory_pset { psetId = model.income.psetId, amount = model.income.amount, currency = model.income.currency, fcId = model.income.categoryId, frequency = model.income.frequency, financialYear = financialYear };
                     _context.mz_student_feecategory_pset.Add(fp);
                     _context.SaveChanges();
 
@@ -243,6 +244,11 @@ namespace mahadalzahrawebapi.Controllers
                 List<FeeCategoryModel> model = new List<FeeCategoryModel>();
 
                 List<student_registration_rights> pset = _context.student_registration_rights.Where(x => x.itsId == authUser.ItsId).ToList();
+                List<mz_student_feecategory> fsc = _context.mz_student_feecategory.ToList();
+                List<registrationform_dropdown_set> rds = _context.registrationform_dropdown_set.ToList();
+                List<registrationform_programs> rp =  _context.registrationform_programs.ToList();
+                List<registrationform_subprograms> rps = _context.registrationform_subprograms.ToList();
+                List<venue> vn = _context.venue.ToList();
 
                 //List<mz_student_feecategory_pset> fc = _context.mz_student_feecategory_pset.ToList();
                 List<dropdown_dataset_options> programDD = new List<dropdown_dataset_options>();
@@ -258,27 +264,27 @@ namespace mahadalzahrawebapi.Controllers
                     {
                         foreach (var fcs in fc)
                         {
-                            mz_student_feecategory f = _context.mz_student_feecategory.Where(x => x.id == fcs.fcId).FirstOrDefault();
+                            mz_student_feecategory f = fsc.Where(x => x.id == fcs.fcId).FirstOrDefault();
                             if (fcs == null)
                             {
                                 f = new mz_student_feecategory();
                             }
-                            registrationform_dropdown_set set = _context.registrationform_dropdown_set.Where(x => x.id == fcs.psetId).FirstOrDefault();
+                            registrationform_dropdown_set set = rds.Where(x => x.id == fcs.psetId).FirstOrDefault();
                             if (set == null)
                             {
                                 set = new registrationform_dropdown_set();
                             }
-                            registrationform_programs p = _context.registrationform_programs.Where(x => x.id == set.programId).FirstOrDefault();
+                            registrationform_programs p = rp.Where(x => x.id == set.programId).FirstOrDefault();
                             if (p == null)
                             {
                                 p = new registrationform_programs();
                             }
-                            registrationform_subprograms sp = _context.registrationform_subprograms.Where(x => x.id == set.subprogramId).FirstOrDefault();
+                            registrationform_subprograms sp = rps.Where(x => x.id == set.subprogramId).FirstOrDefault();
                             if (sp == null)
                             {
                                 sp = new registrationform_subprograms();
                             }
-                            venue v = _context.venue.Where(x => x.Id == set.venueId).FirstOrDefault();
+                            venue v = vn.Where(x => x.Id == set.venueId).FirstOrDefault();
                             if(v == null)
                             {
                                 v = new venue();

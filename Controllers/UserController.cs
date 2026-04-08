@@ -1,20 +1,21 @@
 ﻿using Abp.Extensions;
+using Amazon.S3.Model.Internal.MarshallTransformations;
 using AutoMapper;
+using Dapper;
 using mahadalzahrawebapi.Api.v1;
 using mahadalzahrawebapi.GenericModels;
 using mahadalzahrawebapi.Mappings;
+using mahadalzahrawebapi.Migrations;
 using mahadalzahrawebapi.Models;
 using mahadalzahrawebapi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Collections.Generic;
 using System.Data;
-using Dapper;
+using System.Data.Entity.Core.Mapping;
 using System.Data.SqlClient;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using mahadalzahrawebapi.Migrations;
-using System.Data.Entity.Core.Mapping;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Amazon.S3.Model.Internal.MarshallTransformations;
 namespace mahadalzahrawebapi.Controllers
 {
     [Route("api/[controller]")]
@@ -391,15 +392,18 @@ namespace mahadalzahrawebapi.Controllers
 
 
             List<registrationform_dropdown_set> dv = _context.registrationform_dropdown_set.ToList();
-
+            List<student_registration_rights> srr = _context.student_registration_rights.ToList();
+            List<registrationform_programs> rp = _context.registrationform_programs.ToList();
+            List<registrationform_subprograms> rs = _context.registrationform_subprograms.ToList();
+            List<venue> vn = _context.venue.ToList();
 
             foreach (var i in dv)
             {
-                student_registration_rights d = _context.student_registration_rights.Where(x => x.itsId == itsId && x.programSetId == i.id).FirstOrDefault();
+                student_registration_rights d = srr.Where(x => x.itsId == itsId && x.programSetId == i.id).FirstOrDefault();
 
-                registrationform_programs p = _context.registrationform_programs.Where(x => x.id == i.programId).FirstOrDefault();
-                registrationform_subprograms sp = _context.registrationform_subprograms.Where(x => x.id == i.subprogramId).FirstOrDefault();
-                venue v = _context.venue.Where(x => x.Id == i.venueId).FirstOrDefault();
+                registrationform_programs p = rp.Where(x => x.id == i.programId).FirstOrDefault();
+                registrationform_subprograms sp = rs.Where(x => x.id == i.subprogramId).FirstOrDefault();
+                venue v = vn.Where(x => x.Id == i.venueId).FirstOrDefault();
 
                 if (p != null && v != null && sp != null)
                 {
