@@ -2288,7 +2288,13 @@ namespace mahadalzahrawebapi.Controllers
         [HttpGet]
         public async Task<IActionResult> getauditedvenues()
         {
-            var bdgts = _context.mz_expense_budget_araz.ToList();
+            global_constant fy = _context
+            .global_constant.Where(x => x.key == "budgetFinancialYear")
+            .OrderByDescending(x => x.value)
+            .FirstOrDefault();
+            int financialYear = Int32.Parse(fy.value);
+
+            var bdgts = _context.mz_expense_budget_araz.Where(x => x.financialYear == financialYear).ToList();
             var venues = _context.venue.ToList();
             var res = new List<object>();
             string status = "";
@@ -2298,25 +2304,32 @@ namespace mahadalzahrawebapi.Controllers
                 var bdgtSts = bdgts.Where(x => x.venueId == venue.Id).ToList();
                 if (bdgtSts.Count > 0)
                 {
-                    var intialize = bdgtSts.Any(x => x.stage == "Initiated");
-
+                    var intialize = bdgtSts.Any(x => x.stage == "Initiated" || x.stage == "Initial concern" || x.stage == "Initial resolved");
 
                     if (!intialize)
                     {
-                        var audit = bdgtSts.Any(x => x.stage == "Audited");
-                        if (audit)
-                        {
-                            var auditCount = bdgtSts.Count(x => x.stage == "Audited");
+                        var inAudit = bdgtSts.Any(x => x.stage == "In Audit" || x.stage == "Audited");                        
 
-                            if (bdgtSts.Count == auditCount)
+                        if (inAudit)
+                        {
+                            var inAuditCount = bdgtSts.Count(x => x.stage == "In Audit");
+
+                            if (bdgtSts.Count > inAuditCount)
                             {
-                                status = "Audited";
+                                status = "Pending School Heads's Approval";
+                            }
+
+                            var auditedCount = bdgtSts.Count(x => x.stage == "Audited");
+
+                            if (bdgtSts.Count == auditedCount)
+                            {
+                                status = "Approved by Head Office";
                             }
                             else
                             {
-                                status = "Partly Audited";
+                                status = "Pending Head Office's Approval";
                             }
-                        }
+                        }                        
                         else
                         {
                             var sanction = bdgtSts.Any(x => x.stage == "Sanctioned");
@@ -2328,16 +2341,12 @@ namespace mahadalzahrawebapi.Controllers
                                 {
                                     status = "Sanctioned";
                                 }
-                                else
-                                {
-                                    status = "Not Audited";
-                                }
                             }
                         }
                     }
                     else
                     {
-                        status = "Not Audited";
+                        status = "Pending School Heads's Approval";
                     }
 
                 }
