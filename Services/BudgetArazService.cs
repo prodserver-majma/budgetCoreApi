@@ -579,6 +579,7 @@ namespace mahadalzahrawebapi.Services
                             {
                                 float budget = ba.amountPerUom;
                                 int quntity = ba.quantity;
+                                float rate = ba.amountPerQuantity ?? 0;
 
                                 var bi = baseitems.FirstOrDefault(x => x.id == ba.baseItemId);
                                 var item = items.FirstOrDefault(x => x.id == ba.itemId);
@@ -598,6 +599,7 @@ namespace mahadalzahrawebapi.Services
                                     id = ba.id,
                                     baseItemName = bi.name,
                                     perUnitAmt = budget,
+                                    rate = rate,
                                     description = ba.justification,
                                     quantity = quntity,
                                     itemId = item.id,

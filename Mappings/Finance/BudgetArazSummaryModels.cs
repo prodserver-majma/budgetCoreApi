@@ -41,6 +41,7 @@ namespace mahadalzahrawebapi.Mappings
         public float? perUnitAmt { get; set; } = 0;
         public int? quantity { get; set; } = 1;
         public float total { get; set; } = 0;
+        public float rate { get; set; }
         public bool verified { get; set; } = false;
         public bool isConcerning { get; set; } = false;
         public bool hasIssues { get; set; } = false;
