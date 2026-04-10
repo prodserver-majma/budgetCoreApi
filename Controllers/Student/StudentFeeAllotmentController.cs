@@ -1974,7 +1974,7 @@ namespace mahadalzahrawebapi.Controllers
                     //    return BadRequest(new { message = "Allocation cannot be done for more than 50 students." });
                     //}
 
-                    var stud = studs.Where(x => x.activeStatus == true && x.fcId != null && x.itsID == model.itsId).FirstOrDefault();
+                    var stud = studs.Where(x => x.activeStatus == true && x.itsID == model.itsId).FirstOrDefault();
                     int c = 0;
                     //foreach (var i in itsIds)
                     //{
@@ -2018,7 +2018,7 @@ namespace mahadalzahrawebapi.Controllers
                                 var fc_pset = fc_psets.Where(x => x.id == model.fcId && x.psetId == model.programSetId).FirstOrDefault();
 
                                 var greg_month = greg_months.Where(x => x.id == monthId).FirstOrDefault();
-                                var fc_pset_month = fc_pset_months.Where(x => x.student_feecategory_pset_id == fc_pset.id && x.month == greg_month.slug).FirstOrDefault();
+                                var fc_pset_month = fc_pset_months.Where(x => x.student_feecategory_pset_id == fc_pset.id && x.month == greg_month.month_name).FirstOrDefault();
 
                                 if (allotments.Count < 1)
                                 {
@@ -2155,6 +2155,10 @@ namespace mahadalzahrawebapi.Controllers
                                 }
                             }
                         }
+                    }
+                    else
+                    {
+                        return BadRequest(new { message = "Error allotting the fees." });
                     }
                     //}
                 }
