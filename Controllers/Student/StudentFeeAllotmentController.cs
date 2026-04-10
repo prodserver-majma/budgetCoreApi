@@ -128,8 +128,14 @@ namespace mahadalzahrawebapi.Controllers
         [HttpGet]
         public async Task<IActionResult> getFeesCategoryClassWise(int psetId)
         {
+            global_constant fy = _context
+            .global_constant.Where(x => x.key == "budgetFinancialYear")
+            .OrderByDescending(x => x.value)
+            .FirstOrDefault() ?? new global_constant { key = "budgetFinancialYear", value = "2024" };
+            int financialYear = Int32.Parse(fy.value);
+
             var feeCategories = new List<FeeCategories>();
-            var feeCategory_Pset = _context.mz_student_feecategory_pset.Where(x => x.psetId == psetId).ToList();
+            var feeCategory_Pset = _context.mz_student_feecategory_pset.Where(x => x.psetId == psetId && x.financialYear == financialYear).ToList();
             var feeCategory = _context.mz_student_feecategory.ToList();
 
             foreach (var fee in feeCategory_Pset)
@@ -140,7 +146,8 @@ namespace mahadalzahrawebapi.Controllers
                     feeCategories.Add(new FeeCategories
                     {
                         Id = fee.id,
-                        Name = FC.categoryName
+                        Name = FC.categoryName,
+                        fcId = fee.fcId
                     });
                 }
                 
@@ -1458,21 +1465,21 @@ namespace mahadalzahrawebapi.Controllers
                 string token = _tokenService.ExtractTokenFromRequest(HttpContext);
                 AuthUser authUser = _tokenService.GetAuthUserFromToken(token);
 
-                var allotmentss = _context.mz_student_fee_allotment.AsQueryable();
+                var allotmentss = _context.mz_student_fee_allotment.ToList();
 
                 if (model.fcId != null)
                 {
-                    allotmentss = allotmentss.Where(x => x.fcId == model.fcId);
+                    allotmentss = allotmentss.Where(x => x.fcId == model.fcId).ToList();
                 }
 
                 if (model.pSetId != null)
                 {
-                    allotmentss = allotmentss.Where(x => x.pSetId == model.pSetId);
+                    allotmentss = allotmentss.Where(x => x.pSetId == model.pSetId).ToList();
                 }
 
                 if (model.hijriYear != null)
                 {
-                    allotmentss = allotmentss.Where(x => x.hijriYear == model.hijriYear);
+                    allotmentss = allotmentss.Where(x => x.hijriYear == model.hijriYear).ToList();
                 }
 
                 List<mz_student_fee_allotment> allotments = allotmentss.ToList();
@@ -1639,7 +1646,7 @@ namespace mahadalzahrawebapi.Controllers
                         if (ex == null)
                         {
                             var gregMonth = gregMonths.Where(x => x.id == monthId).FirstOrDefault();
-                            var feeCatMnth = feeCategoriesMonthly.Where(x => x.month == gregMonth.slug).FirstOrDefault();
+                            var feeCatMnth = feeCategoriesMonthly.Where(x => x.month == gregMonth.month_name).FirstOrDefault();
 
                             if (feeCatMnth != null)
                             {
@@ -2452,6 +2459,7 @@ namespace mahadalzahrawebapi.Controllers
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int? fcId { get; set; }
         public int? classId { get; set; }
         public int? schoolId { get; set; }
     }

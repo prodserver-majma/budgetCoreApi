@@ -234,6 +234,13 @@ namespace mahadalzahrawebapi.Controllers
         {
             string api = "getallfeecategorypset";
             //// Add_ApiLogs(api);
+            ///
+            int financialYear = Int32.Parse(
+                    _context
+                        .global_constant.Where(x => x.key == "budgetFinancialYear")
+                        .FirstOrDefault()
+                        .value
+            );
 
 
             try
@@ -250,14 +257,14 @@ namespace mahadalzahrawebapi.Controllers
                 List<registrationform_subprograms> rps = _context.registrationform_subprograms.ToList();
                 List<venue> vn = _context.venue.ToList();
 
-                //List<mz_student_feecategory_pset> fc = _context.mz_student_feecategory_pset.ToList();
+                List<mz_student_feecategory_pset> fcss = _context.mz_student_feecategory_pset.Where(x => x.financialYear == financialYear).ToList();
                 List<dropdown_dataset_options> programDD = new List<dropdown_dataset_options>();
                 List<dropdown_dataset_options> categoryDD = new List<dropdown_dataset_options>();
                 List<dropdown_dataset_options> amountDD = new List<dropdown_dataset_options>();
 
                 foreach (var i in pset)
                 {
-                    var fc = _context.mz_student_feecategory_pset.Where(x => x.psetId == i.programSetId).ToList();
+                    var fc = fcss.Where(x => x.psetId == i.programSetId).ToList();
                     
                     
                     if (fc != null)
