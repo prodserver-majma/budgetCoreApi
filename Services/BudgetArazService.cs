@@ -3454,6 +3454,7 @@ namespace mahadalzahrawebapi.Services
             araz.quantity = budgetVarification.quantity ?? 0;
             araz.justification = budgetVarification.description;
             araz.amountPerUom = budgetVarification.perUnitAmt ?? 0;
+            araz.amountPerQuantity = budgetVarification.rate;
             araz.updatedBy = authUser.Name;
             araz.updatedOn = DateTime.Now;
             _context.SaveChanges();

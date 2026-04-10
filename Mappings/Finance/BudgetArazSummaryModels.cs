@@ -32,6 +32,7 @@ namespace mahadalzahrawebapi.Mappings
     public class BudgetArazItem
     {
         public int id { get; set; }
+        public float amounts { get; set; }
         public int itemId { get; set; }
         public string? name { get; set; }
         public string? type { get; set; }
